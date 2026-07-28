@@ -1,0 +1,7 @@
+app/venv
+.git
+.gitignore
+README.md
+LICENSE
+__pycache__/
+*.pyc
