@@ -23,7 +23,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t jitendrachittodiya/flask-k8s-app:latest .
+        run: |
+          docker build \
+            -t jitendrachittodiya/flask-k8s-app:${{ github.sha }} \
+            -t jitendrachittodiya/flask-k8s-app:latest \
+            .
 
-      - name: Push Docker Image
-        run: docker push jitendrachittodiya/flask-k8s-app:latest
+      - name: Push Docker Images
+        run: |
+          docker push jitendrachittodiya/flask-k8s-app:${{ github.sha }}
+          docker push jitendrachittodiya/flask-k8s-app:latest
